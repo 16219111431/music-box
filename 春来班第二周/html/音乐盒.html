@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link rel="stylesheet" href="../css/iconfont/iconfont.css">
+
+<style>
+    *{margin: 0;padding: 0;}
+    body{ background-image: linear-gradient(#3498db,#e74c3c);height: 100vh;}
+    #main{
+        position: relative;
+        width: 600px;
+        height: 450px;
+        /* border: 1px solid black; */
+        background:transparent;
+        border-radius: 20px;
+        margin: 100px auto;
+        box-shadow:0px 0px 20px rgba(0,0,0,.3);
+    }
+    #image{
+        box-shadow:-12px 0px 20px rgba(0,0,0,.3);
+        left: -30px;
+        top: 25px;
+        position: relative;
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+    }
+   #image .imgs{
+        box-shadow:12px 0px 80px rgba(0,0,0,.3);
+        opacity: 0;
+        transition: all  1s; 
+        position: absolute;
+        border-radius: 50%;
+        width: 100%;
+        height:200px;
+        animation: quan 10s linear infinite;
+    }
+    @keyframes quan{
+        0%{transform: rotateZ(0);}
+        100%{transform: rotateZ(360deg);}
+    }
+    .activeimg{
+        opacity: 1!important;
+        z-index: 999;
+    }
+    .btn{
+       position: absolute;
+       margin-top:40px;
+       margin-left: 5px;
+    }
+    .btn>img{
+        margin-left: 20px;
+       box-shadow:-15px 6px 15px rgba(0,0,0,.3);
+       border-radius: 20%; 
+       margin-bottom: 30%;
+       width: 13px;
+       height: 13px;
+       cursor: pointer;
+    }
+    .songlist{
+        margin-top:15px ;
+        position: absolute;
+        background-image: linear-gradient(#3498db,#e74c3c);
+        left: 15%;
+        top: 60%;
+        transform: translateX(-50%);
+    }
+    .songlist{
+        position: absolute;
+		width: 150px;
+		background-color: #fff;
+		color: #555;
+		border: 1px solid #aaa;
+		text-shadow: none;
+		border-radius: 4px;	
+		transition: box-shadow 1s ease;
+		z-index: 2;
+    }
+    .songlist:hover {
+        box-shadow:-20px 24px 10px rgba(0,0,0,.3);
+	}
+    .songlist select {
+        font-size: 10px;
+		cursor: pointer;
+		padding: 12px;
+		width: 100%;
+		border: none;
+		background: transparent;
+        background-image: none;
+        outline: none;
+    }
+    #inLine{
+        opacity: 0.5;
+        border-radius: 20px;
+        top: 80px;
+        right: 70px;
+        width: 350px;
+        height: 7px;
+        background: black;
+        position: absolute;   
+    }
+    #inLine>div{
+    border-radius: 20px;
+    position: absolute;
+    height: 7px;
+    transition: all 0.25s ease-in-out;
+    height: 7px; background: #20A0FF;border-radius: 20px;
+    }
+    #inLine>div:after{
+    content:"";height: 7px; background: #fff; border-radius: 20px;
+    position: absolute; 
+    animation: progshow 1s infinite;
+    }
+    @keyframes progshow {
+    0%   {width: 0; opacity: .8;}
+    100% {width: 100%; opacity: 0.1;}
+}
+    span{
+        font-family: "Times New Roman", Times, serif;
+        font-size: 15px;
+        color: #000000;
+        opacity: 0.6;
+    }
+    .wrap{
+        border-radius: 10px;
+        position: relative;
+        height: 150px;
+        width: 310px;
+        background: black;
+        overflow:auto;
+        left: 15px;
+        top: 90px;
+        opacity: 0.5;
+    }
+.wrap::-webkit-scrollbar-track {/*滚动条的柱子*/
+background-color: #cccccc;
+border-radius: 10%;
+}
+.wrap::-webkit-scrollbar {/*滚动条整体部分，可以设置宽度等*/
+    width:8px;
+            background-color: #0e487c;
+}
+.wrap::-webkit-scrollbar-thumb {/*滚动条的拖动 */
+    background-color: black;
+    border-radius: 4px;
+
+}
+.wrap::-webkit-scrollbar-thumb:hover {/*滚动条的拖动 */
+background-color: #3498db;
+border-radius: 4px;
+}
+    ul{list-style: none;}
+    .item{margin-top: 10px;color: white;cursor: pointer;margin-left: 10px;font-size: 15px;
+        font:14px/18px "Trebuchet MS", Arial, Helvetica, sans-serif;
+        transition: font-size 1s;
+    }
+    .wrap li.activeli{
+        font-size: 19px;
+        font-weight: bold;
+        color:aqua;
+        margin-left: 25px;
+    }
+    .wrap li:hover{
+        color: red;
+    }
+    #VolumeLine{
+        opacity: 0.5;
+        border-radius: 20px;
+        top: 100px;
+        right: 70px;
+        width: 100px;
+        height: 5px;
+        background: black;
+        position: absolute;   
+    }
+    #VolumeLine>div{
+   
+    border-radius: 20px;
+    position: absolute;
+    height: 5px;
+    transition: all 0.25s ease-in-out;
+     background: #e74c3c;border-radius: 20px;
+    }
+    #inLine>div:after{
+    content:"";height: 7px; background: #fff; border-radius: 20px;
+    position: absolute; 
+    animation: progshow 1s infinite;
+    }
+    @keyframes progshow {
+    0%   {width: 0; opacity: .8;}
+    100% {width: 100%; opacity: 0.1;}
+}
+.songword{
+    border-radius: 20px;
+    overflow: hidden;
+    width: 260px;height: 320px;
+    border: none;
+    position: relative;
+    top: -225px;
+    left: 343px;
+     
+}
+#content{
+    transition: all 1s;
+   
+}
+.songword #content>p{
+    transition: color 1s;
+  color: #fff;
+  margin-top: 10px;
+  font-size: 15px;
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  opacity: 0.2;
+}
+.show{
+    color: #000000 !important;
+    font-size: 20px !important;
+    font-weight: bold;
+    opacity: 1!important;
+}
+
+.btn>.iconWrap{
+    padding-top: 5px;
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    top: 20px;
+    margin-left: 30px;
+}
+.btn>.iconWrap>.icons{
+    box-shadow:-20px 24px 10px rgba(0,0,0,.3);
+    margin-right: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #fff;
+}
+.iconActive{
+    font-size: 23px !important;
+    color:coral !important;
+    font-weight: bold !important;
+}
+</style>
+<body  style="overflow-y: hidden">
+    <div id="main" class="">  
+        <span class="icon iconfont" style="font-size: 30px;position: absolute;">&#xe6af;</span>
+        <h1 style="width: 300px;position: absolute;left: 36%;margin-top: 10px;font-size: 20px;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;" id="namel">薛之谦 - 丑八怪</h1>
+        <span style="position: absolute;top: 50px;left: 180px;" id="name2">00:00</span>
+        <span style="position: absolute;top: 50px;left: 220px;" id="name4">/</span>
+        <span style="position: absolute;top: 50px;left: 230px;" id="name3">00:00</span>
+        <div id="inLine">
+            <div></div>
+        </div>
+        
+        <div id="VolumeLine">
+            <div></div>
+            <!-- <img src="../img/music/volume.png" style="position: absolute;left: -20px;top: -5px;" alt=""> -->
+        </div>
+        <div id="image">
+        </div>
+        <div class="btn">
+            <!-- <img src="../img/music/bf.jpg" alt="" onclick="stop()"> -->
+            <img src="../img/music/rewind.png" onclick="goleft()" alt="">
+            <img src="../img/music/fastforward.png" onclick="goright()" alt="">
+            <img src="../img/music/playing.png" alt="" id="changeMu" >
+            <img src="../img/music/play.png" alt="" id="playMusic" >
+            <div class="iconWrap">
+                <span class="icon iconfont icons " style="display: block;" title="随机">&#xe7b8;</span>
+                <span class="icon iconfont icons" style="display: block;"  title="单曲循环">&#xe649;</span>
+                <span class="icon iconfont icons iconActive" style="display: block;" title="顺序播放">&#xe617;</span>
+            </div>
+           
+        </div>
+        <div class="songlist" hidden>
+            <select name="" id="select">
+
+            </select>
+        </div>
+        <div class="wrap">
+            <ul id="songLists">
+            </ul>
+        </div>
+        <div class="songword">
+            <div id="content">
+                <p></p>
+            </div>
+        </div>
+        
+<textarea name="" id="word0" hidden>
+[00:00.63]丑八怪 - 薛之谦
+[00:03.13]作词：甘世佳
+[00:05.32]作曲：李荣浩 
+[00:16.98]
+[00:20.26]如果世界漆黑 其实我很美
+[00:23.88]在爱情里面进退 最多被消费
+[00:27.70]不管同样的是非
+[00:29.69]又怎么不对 无所谓
+[00:35.69]如果像你一样 总有人谄媚
+[00:39.32]围绕着我的卑微 也许能消退
+[00:43.32]其实我并不在意 有很多机会
+[00:46.69]像巨人一样的无畏
+[00:49.51]放纵我心里的鬼
+[00:51.20]可是我不配
+[00:54.46]丑八怪 能否别把灯打开
+[01:02.21]我要的爱 出没在漆黑一片的舞台
+[01:09.46]丑八怪 在这暧昧的时代
+[01:17.58]我的存在 像意外
+[01:24.48]
+[01:37.79]有人用一滴泪 会红颜祸水
+[01:41.35]有人丢掉称谓 什么也不会
+[01:45.29]只要你足够虚伪
+[01:47.10]就不怕魔鬼 对不对
+[01:53.05]如果剧本写好 谁比谁高贵
+[01:56.74]我只能沉默以对 美丽本无罪
+[02:00.63]当欲望开始贪杯 有更多机会
+[02:04.07]像尘埃一样的无畏
+[02:06.89]化成灰谁认得谁管他配不配
+[02:08.65]
+[02:11.96]丑八怪 能否别把灯打开
+[02:19.52]我要的爱 出没在漆黑一片的舞台
+[02:26.83]丑八怪 在这暧昧的时代
+[02:34.96]我的存在 不意外
+[02:42.33]
+[03:01.96]丑八怪 其实见多就不怪
+[03:09.96]放肆去high 用力踩
+[03:14.15]那不堪一击的洁白
+[03:17.21]丑八怪 这是我们的时代
+[03:25.48]我不存在 才意外
+</textarea>
+<textarea id="word1" hidden>
+[00:00.60]毛不易 - 别再闹了
+[00:07.16]录音：柯研
+[00:07.36]混音：柯研
+[00:07.52]录音棚：小柯剧场录音棚
+[00:07.92]著作权拥有：北京乐之昂文化传媒有限公司
+[00:09.04]音乐企划营销：奔跑怪物
+[00:17.14]我们聊些有趣的事情
+[00:21.19]别把气氛弄的如此低沉
+[00:25.64]我知道这几天你心烦
+[00:30.09]每个人的活都不简单
+[00:33.52]我知道如果把你换做我
+[00:38.27]我也会冲动也会不安
+[00:42.16]即使天塌了还有我在身边
+[00:46.92]没有什么不解的难
+[00:51.59]外面纷纷扰扰
+[00:53.71]里面乱乱糟糟
+[00:55.38]我们别再闹了
+[00:58.88]这个冬天已然很冷了
+[01:03.08]我们靠在一起好吗
+[01:22.28]我们聊些有趣的事情
+[01:26.38]别把气氛弄的如此低沉
+[01:30.84]我知道这几天你心烦
+[01:35.29]每个人的活都不简单
+[01:40.05]外面纷纷扰扰
+[01:42.13]里面乱乱糟糟
+[01:43.70]我们别再闹了
+[01:47.40]现实生活本来已很累了
+[01:51.85]把你的手给我吧
+[01:56.92]外面纷纷扰扰
+[01:58.93]里面乱乱糟糟
+[02:00.50]我们别再闹了
+[02:04.15]这个冬天已然很冷了
+[02:08.50]我们靠在一起好吗
+[02:28.64]外面纷纷扰扰
+[02:30.47]里面乱乱糟糟
+[02:32.03]我们别再闹了
+[02:35.73]这个冬天已然很冷了
+[02:40.02]我们靠在一起好吗
+[02:45.28]外面纷纷扰扰
+[02:47.25]里面乱乱糟糟
+[02:48.88]我们别再闹了
+[02:52.58]现实生活本来已很累了
+[02:57.09]把你的手给我吧
+[03:01.04]这个冬天已然很冷了
+[03:05.39]我们靠在一起好吗
+</textarea>    
+<textarea id="word2">
+[00:00.76]赵雷 - 鼓楼
+[00:01.74]作词：赵雷
+[00:02.66]作曲：赵雷
+[00:26.05]我走在鼓楼下面
+[00:31.50]路在堵着
+[00:34.28]雨后的阳光散落
+[00:38.47]人们都出来了
+[00:42.35]执着的迷惘的
+[00:47.83]文艺青年很多
+[00:50.71]如果我无聊了
+[00:53.89]就会来这里坐坐
+[00:58.08]我是个沉默不语的
+[01:01.87]靠着墙壁晒太阳的过客
+[01:06.48]如果我有些倦意了
+[01:10.11]就让我在这里独自醒过
+[01:15.88]我站在鼓楼上面
+[01:19.11]一切繁华与我无关
+[01:23.17]这是个拥挤的地方
+[01:27.22]而我却很平凡
+[01:47.24]我走在鼓楼下面
+[01:52.54]淋湿的咖啡馆
+[01:55.66]睡不着的后海边
+[01:59.14]月亮还在抽着烟
+[02:03.60]喝醉的亲吻着
+[02:09.08]快活的人不眠
+[02:11.90]唯有我倚着围栏
+[02:15.37]对过往说晚安
+[02:21.63]晚安
+[02:52.40]我是个沉默不语的
+[02:55.81]靠着车窗想念你的乘客
+[03:00.30]当一零七路再次经过
+[03:04.27]时间是带走青春的电车
+[03:09.56]我站在什刹海边
+[03:13.05]一切甜蜜与我无关
+[03:17.00]这是个拥挤的地方
+[03:21.03]而我却很孤单
+[03:24.52]我在鼓楼
+[03:28.77]我在鼓楼
+[03:32.72]我在鼓楼
+[03:40.72]我在鼓楼
+[03:46.05]我在鼓楼
+[03:49.44]我在鼓楼
+</textarea>
+<textarea id="word3" >
+[00:06.37]yo
+[00:07.67]watch as the room rocks
+[00:09.22]mentally moonwalk  
+[00:10.12]mixed media slang    
+[00:11.41]banging in your boombox 
+[00:12.85]verbal violence
+[00:13.88]lyrical stylist
+[00:14.80]in a time when rock 
+[00:15.78]hip-hop rhymes are childish
+[00:17.41]you can't tempt me with rhymes 
+[00:18.66]that are empty
+[00:19.68]rappin' to a beat 
+[00:20.58]doesn't make you an emcee
+[00:21.78]with your lack of skill 
+[00:22.84]and facility you're killing me
+[00:24.40]and a DJ in the group 
+[00:25.49]just for credibility
+[00:26.54]i heard that some of you 
+[00:27.89]are gettin' help with your rhymes
+[00:29.14]you're not an emcee 
+[00:29.99]if someone else writes your lines
+[00:31.78]rappin' over rock 
+[00:32.48]doesn't make you a pioneer
+[00:33.88]cuz rock and hip-hop 
+[00:34.89]have collaborated for years
+[00:36.42]but now they're getting randomly 
+[00:37.60]mixed and matched up
+[00:38.70]all after a fast buck
+[00:39.76]and all the tracks suck
+[00:40.99]so how does it stack up
+[00:42.44]none of its real
+[00:43.40]you wanna be an emcee
+[00:44.55]you gotta study the skill
+[00:46.08]who can rock a rhyme like this
+[00:48.18]bring it to you every time like this
+[00:50.71]who can rock a rhyme like this
+[00:53.21]step step up step step up
+[00:55.42]so you pick up a pen 
+[00:56.62]and write yourself a new identity
+[00:57.91]but mentally you don't have 
+[00:59.27]the hip-hop energy
+[01:00.37]with a tendency to make up stories
+[01:02.37]it sounded like the only 
+[01:03.62]hip-hop you've heard is top-40
+[01:05.34]and your record company's 
+[01:06.74]completely missed it
+[01:07.64]and all the kids are dissin' it 
+[01:08.94]for not being legitimate
+[01:10.08]so in a battle
+[01:11.13]you can't hack it
+[01:11.98]react with whack ****
+[01:12.83]and get smacked with verbal backflips
+[01:14.91]get your *** kicked
+[01:15.69]i'm a fabulous battle catalyst
+[01:17.49]it's taken decades 
+[01:18.44]for emcees to establish this
+[01:19.79]you're new to hip-hop 
+[01:20.79]and welcome if you're serious
+[01:21.68]but not on a mike
+[01:22.91]leave that to the experienced
+[01:33.90]who can rock a rhyme like this
+[01:36.05]bring it to you every time like this
+[01:38.75]who can rock a rhyme like this
+[01:41.20]step step up step step up
+[01:43.67]who can rock a rhyme like this
+[01:45.87]bring it to you every time like this
+[01:48.27]who can rock a rhyme like this
+[01:50.62]step step up step step up step up
+[02:50.96]who can rock a rhyme like this
+[02:53.06]bring it to you every time like this
+[02:55.46]who can rock a rhyme like this
+[02:57.86]step step up step step up
+[03:00.47]who can rock a rhyme like this
+[03:02.67]bring it to you every time like this
+[03:05.07]who can rock a rhyme like this
+[03:07.52]step step up step step up step up
+</textarea>
+<textarea name="" id="word4" cols="30" rows="10">
+[00:00.11]Sasha Sloan - Dancing With Your Ghost
+[00:00.86]Written by：Sasha Sloan
+[00:13.08]Yelling at the sky
+[00:16.12]Screaming at the world
+[00:19.58]Baby why'd you go away 
+[00:21.51]I'm still your girl
+[00:25.90]Holding on too tight
+[00:29.01]Head up in the clouds
+[00:32.14]Heaven only knows where you are now
+[00:38.71]How do I love how do I love again 
+[00:45.03]How do I trust how do I trust again 
+[00:50.28]I stay up all night
+[00:52.92]Tell myself I'm alright
+[00:56.48]Baby you're just harder to see than most
+[01:03.05]I put the record on
+[01:05.84]Wait til I hear our song
+[01:08.83]Every night I'm dancing with your ghost
+[01:15.58]Every night I'm dancing with your ghost
+[01:23.52]Never got the chance
+[01:26.53]To say a last goodbye
+[01:29.72]I gotta move on
+[01:31.81]But it hurts to try
+[01:36.34]How do I love how do I love again 
+[01:42.60]How do I trust how do I trust again 
+[01:47.91]I stay up all night
+[01:50.49]Tell myself I'm alright
+[01:53.62]Baby you're just harder to see than most
+[02:00.75]I put the record on
+[02:03.33]Wait 'til I hear our song
+[02:06.46]Every night I'm dancing with your ghost
+[02:12.92]Every night I'm dancing with your ghost
+[02:21.11]How do I love how do I love again 
+[02:27.52]How do I trust how do I trust again 
+[02:32.67]I stay up all night
+[02:35.25]Tell myself I'm alright
+[02:38.76]Baby you're just harder to see than most
+[02:45.62]I put the record on
+[02:48.10]Wait 'til I hear our song
+[02:51.33]Every night I'm dancing with your ghost
+[02:57.96]Every night I'm dancing with your ghost
+[03:04.39]Every night I'm dancing with your ghost
+</textarea>
+<textarea name="" id="word5" cols="30" rows="10">
+[00:00.11]Tones And I - Dance Monkey
+[00:09.45]They say oh my god I see the way you shine
+[00:14.34]Take your hand my dear and place them both in mine
+[00:18.95]You know you stopped me dead when I was passing by
+[00:24.01]And now I beg to see you dance just one more time
+[00:28.61]Ooh I see you see you see you every time
+[00:33.91]And oh my I I I I like your style
+[00:38.21]You you make me make me make me wanna cry
+[00:43.65]And now I beg to see you dance just one more time
+[00:47.86]So I say
+[00:49.07]Dance for me dance for me dance for me oh oh oh
+[00:53.10]I've never seen anybody do the things you do before
+[00:57.59]They say move for me move for me move for me
+[01:00.86]Ay ay ay
+[01:03.25]And when you're done I'll make you do it all again
+[01:08.32]I said oh my god I see you walking by
+[01:13.17]Take my hands my dear and look me in my eyes
+[01:17.55]Just like a monkey I've been dancing my whole life
+[01:22.47]And you just beg to see me dance just one more time
+[01:27.26]Ooh I see you see you see you every time
+[01:32.45]And oh my I I I I like your style
+[01:37.04]You you make me make me make me wanna cry
+[01:42.29]And now I beg to see you dance just one more time
+[01:46.72]So I say
+[01:47.83]Dance for me dance for me dance for me oh oh oh
+[01:52.17]I've never seen anybody do the things you do before
+[01:56.41]They say move for me move for me move for me
+[01:59.64]Ay ay ay
+[02:01.82]And when you're done I'll make you do it all again
+[02:06.24]They say
+[02:07.40]Dance for me dance for me dance for me
+[02:09.49]Oh oh oh oh oh oh oh
+[02:11.82]I've never seen anybody do the things you do before
+[02:15.94]They say move for me move for me move for me
+[02:19.14]Ay ay ay
+[02:21.71]And when you're done I'll make you do it all again
+[02:27.18]Ooh all again all again
+[02:34.32]Woah-oh woah-oh oh
+[02:36.96]Oh oh oh
+[02:44.31]Ah ah ah ah ay
+[02:45.83]They say
+[02:46.63]Dance for me dance for me dance for me
+[02:48.62]Oh oh oh
+[02:50.70]I've never seen anybody do the things you do before
+[02:55.26]They say move for me move for me move for me
+[02:58.36]Ay ay ay
+[03:00.51]And when you're done I'll make you do it all again
+[03:04.98]They say
+[03:06.22]Dance for me dance for me dance for me
+[03:08.25]Oh oh oh oh oh oh oh
+[03:10.53]I've never seen anybody do the things you do before
+[03:14.96]They say move for me move for me move for me
+[03:17.90]Ay ay ay
+[03:20.15]And when you're done I'll make you do it all again
+[03:24.59]All again
+</textarea>
+<textarea name="" id="word6" cols="30" rows="10">
+[00:00.04]LINKIN PARK - In The End
+[00:16.94]It starts with
+[00:18.30]One thing I don't know why
+[00:20.47]Doesn't even matter how hard you try
+[00:22.65]Keep that in mind
+[00:23.59]I designed this rhyme to explain in due time
+[00:26.18]All I know
+[00:28.06]Time is a valuable thing
+[00:29.59]Watch it fly by as the pendulum swings
+[00:31.85]Watch it count down to the end of the day
+[00:33.94]The clock ticks life away
+[00:35.18]It's so unreal
+[00:37.20]Didn't look out below
+[00:38.80]Watch the time go right out the window
+[00:41.20]Tryin' to hold on didn't even know
+[00:43.38]I wasted it all just to watch you go
+[00:46.35]I kept everything inside
+[00:47.84]And even though I tried it all fell apart
+[00:50.48]What it meant to me will eventually be a memory
+[00:52.94]Of a time when I tried so hard
+[00:55.94]And got so far
+[00:58.91]But in the end it doesn't even matter
+[01:02.94]I had to fall to lose it all
+[01:08.12]But in the end it doesn't even matter
+[01:13.61]One thing I don't know why
+[01:15.77]Doesn't even matter how hard you try
+[01:17.89]Keep that in mind I designed this rhyme
+[01:19.99]To remind myself how I tried so hard
+[01:23.34]In spite of the way you were mockin' me
+[01:25.41]Actin' like I was part of your property
+[01:27.57]Remembering all the times you fought with me
+[01:29.77]I'm surprised it got so far
+[01:32.11]Things aren't the way they were before
+[01:34.72]You wouldn't even recognize me anymore
+[01:36.94]Not that you knew me back then
+[01:38.70]But it all comes back to me in the end
+[01:41.80]Kept everything inside
+[01:42.96]And even though I tried it all fell apart
+[01:45.60]What it meant to me will eventually
+[01:47.47]Be a memory of a time when I tried so hard
+[01:50.97]And got so far
+[01:53.81]In the end it doesn't even matter
+[01:57.93]I had to fall to lose it all
+[02:02.98]In the end it doesn't even matter
+[02:09.31]I've put my trust in you
+[02:14.39]Pushed as far as I can go
+[02:18.71]For all this
+[02:20.90]There's only one thing you should know
+[02:27.50]I've put my trust in you
+[02:32.18]Pushed as far as I can go
+[02:36.52]For all this
+[02:38.62]There's only one thing you should know
+[02:45.48]I tried so hard and got so far
+[02:50.43]In the end it doesn't even matter
+[02:54.05]I had to fall to lose it all
+[02:59.21]In the end it doesn't even matter
+[03:07.68]I tried so hard and got so far
+[03:13.92]In the end it doesn't even matter
+[03:18.46]I had to fall
+</textarea>
+<textarea name="" id="word7" cols="30" rows="10">
+[00:00.04]暂无歌词
+</textarea>
+    </div>
+    
+<div class="audio_con" οnclick="playVid()" style="width: 200px;">
+    <div class="audiobg" style="width: 200px;"></div>
+</div>
+    <audio id="audio" src="../img/music/薛之谦 - 丑八怪.mp3" ></audio>
+    <script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+    <script>
+        
+       var audio=document.getElementById('audio')
+       var imgs=document.getElementsByClassName('imgs')
+        var songSelect=document.querySelector('.songlist>select');
+        var playMusic=document.getElementById('playMusic')
+        var options=document.getElementsByClassName('optionl')
+        var name=document.getElementById('namel')
+        var name2=document.getElementById('name2')
+        var name3=document.getElementById('name3')
+        var changeMu=document.getElementById('changeMu')
+        var inline=document.getElementById('inLine').firstElementChild;
+        var list=['薛之谦 - 丑八怪','毛不易 - 别再闹了','赵雷 - 鼓楼','LINKIN PARK - Step Up',
+        'Sasha Sloan - Dancing With Your Ghost','Tones And I - Dance Monkey',
+        'LINKIN PARK - In The End','音妇','叶洛洛 - 蛋黄蛋白','小小音乐厅','小阿枫 - 为爱转身',
+        '我在人民广场吃炸鸡','王蓉 - 水煮鱼','日本群星 - 夕烧けの歌','日本群星 - 君の代 (君之代)',
+        '米津玄師 - Lemon (柠檬)','米津玄师','歌ってみた','钢琴曲','Ameritz)',
+        'DAOKO','Music'];
+        var listSong=[{name:'薛之谦 - 丑八怪',data:'123'}]
+        var image=document.getElementById('image');
+        var map=0;
+        var srcnew=0;
+        var index=0;
+        var num=0;
+        var indexOption=0;
+        var value=0;
+        var changeMuNum=0;
+        var timer=null;
+        var items=document.getElementsByClassName('item');
+        var volumeline=document.getElementById('VolumeLine').firstElementChild
+        var songLists=document.getElementById('songLists');
+        var iconWrap=document.getElementsByClassName('iconWrap');
+        var MusicNeme=0;
+        var allNum=0;
+        var TypeChange=0;//当前列表的index
+        var typeIndex=2;//当前type的index
+        //切割歌词
+        //主体函数 歌词操作
+        function all(req){
+        var content=document.getElementById('content')
+        var p1=document.getElementsByTagName('p')
+        var SongWord=0;
+        var SongTime=0;
+        
+            function SongOption(elementName){
+            SongWord=[];
+            SongTime=[];
+            if(document.getElementById(elementName)){
+                var word=document.getElementById(elementName).innerHTML.split('\n').map(v=>{
+                var arr=v.split("]");
+                SongWord.push(v.split(']')[1]);
+                SongTime.push(arr[0].slice(1));
+            });
+            }else{
+                SongWord.push( '暂无歌词');
+                SongTime.push('[00:00.04]');
+            } 
+        }
+        SongOption(req)
+    var SongeWordCreate=function(){
+          for(var i=0;i<SongWord.length;i++){
+              var p=document.createElement('p');
+              p.innerHTML=SongWord[i];
+              content.appendChild(p)
+          }
+         p1[0].className='show'
+        //  content.innerHTML="";//清除所有子元素
+      }
+      SongeWordCreate()
+      var SongTime= SongTime.map(v=>{
+           return Number(v.split(":")[0]*60)+Number( v.split(":")[1]);
+       })
+       audio.ontimeupdate=function(){
+               var i=0;
+               while(audio.currentTime>SongTime[i]){
+                   i++;
+               }
+               console.log(i)//一直是0 即audio.currentTime>SongTime[i] 不成立
+            if(i>1){
+                p1[i-1].className=' '
+            }
+          
+              p1[i].className="show";
+              var numn=80-50*i;
+              content.style="margin-top:"+numn+"px";
+             
+            
+        }
+        }
+    all('word0')
+        //点击 icon切换active
+        var iconActiveChange=function(){
+            var obj=document.getElementsByClassName('icons')
+           for(var i=0;i<obj.length;i++){
+               obj[i].index=i
+               obj[i].addEventListener('click',function(){
+                   typeIndex=this.index
+                   console.log(typeIndex)
+                for(var i=0;i<obj.length;i++){
+                    obj[i].classList.remove('iconActive')
+                }
+                    obj[this.index].classList.add('iconActive')
+               })
+           }
+        }
+        iconActiveChange()
+        //js创建 音乐清单
+        var CreateList=function(){
+            for(var i=0;i<list.length;i++){
+                var lists=document.createElement("li")
+                lists.setAttribute("class","item")
+                lists.innerHTML=list[i]
+             songLists.appendChild(lists)
+            }
+            items[0].className='item activeli';
+        }
+        CreateList()
+        //js创建 option
+        var CreateOption=function(){
+            for(var i=0;i<list.length;i++){
+                var lists=document.createElement("option")
+                lists.innerHTML=list[i]
+                lists.setAttribute("class","optionl")
+                lists.setAttribute("value",i)
+                songSelect.appendChild(lists)
+            }
+        }
+        CreateOption();
+        //js创建图片
+         var CreateImg=()=>{
+             for(var i=0;i<list.length;i++){
+                 var lists=document.createElement("img");
+                 lists.setAttribute("class","imgs");
+                 var srcs=`../img/music/${i+1}.jpg`
+                 lists.setAttribute("src",srcs)
+                 lists.setAttribute("alt"," ")
+                 image.appendChild(lists)
+             }
+             imgs[0].className='imgs activeimg'
+         }
+         CreateImg()
+        //音乐列表点击
+        //清空列表样式
+        function alll (){
+            if(songSelect.value<6){
+                allNum='word'+songSelect.value
+                    content.innerHTML="" 
+                    all(allNum)
+        }else{  
+                    allNum='word'+7
+                    content.innerHTML=""
+                    all(allNum)
+        }
+        }
+        var allNumNew=0;
+       var nextMusic= function(){
+           if(typeIndex==2){
+            if(audio.currentTime==audio.duration){
+                if(songSelect.value==songSelect.length-1){
+                    songSelect.value=0 
+                }else{
+                    songSelect.value++
+                }
+                songSelect.value
+                alll ()
+                change(songSelect.value) 
+             }
+           }else if(typeIndex==1){
+                 if(audio.currentTime==audio.duration){
+                     alll()
+                     change(songSelect.value) 
+                 }
+             }else if(typeIndex==0){
+                if(audio.currentTime==audio.duration){
+                       var num= parseInt( Math.random()*list.length);
+                       songSelect.value=num
+                       alll()
+                  change(songSelect.value) 
+                 }
+             }
+        }
+        var clearList=function(){
+            for(var i=0;i<items.length;i++){
+            items[i].className="item"
+        }
+    }
+       var songlistClick=function(){
+        for(var i=0;i<items.length;i++){
+            items[i].index=i;
+            items[i].onclick=function(){
+                clearList();
+                items[this.index].className="item activeli"
+                songSelect.value=this.index
+                TypeChange=this.index;
+               var allNum='word'+this.index
+               content.innerHTML=""
+               all(allNum)
+                change(songSelect.value)
+            }
+        }
+       }
+       songlistClick();
+        //键盘调节进度条
+        //键盘调节音量大小
+        window.onkeydown=function(event){
+            if(event.keyCode==38||event.keyCode==40){
+                if(event.keyCode==38 && audio.volume<1){
+                if(audio.volume>0){
+                    document.getElementById('changeMu').src='../img/music/playing.png'
+                }
+                audio.volume=audio.volume+0.05;
+            }else if(event.keyCode==40){
+                if(audio.volume>0.05){
+                    audio.volume=audio.volume-0.05;
+                }else{
+                    audio.volume=0;
+                    MusicLine()
+                    document.getElementById('changeMu').src='../img/music/mute.png'
+                }
+            }
+            MusicLine()
+            }else if(event.keyCode==37||event.keyCode==39){//左37 右39
+                 if(event.keyCode==39){
+                    console.log(inline.style.width)
+                     console.log(inline.style.width+1)
+                    var duringTimer=audio.duration
+                    audio.currentTime++;
+                    var widthgo= audio.currentTime/duringTimer*350;
+                    inline.style='width:'+widthgo+'px';
+                 curtime(name2)
+                 duratime(name3)
+                 }else if(event.keyCode==37){
+                    var duringTimer=audio.duration
+                    audio.currentTime--;
+                    var widthgo= audio.currentTime/duringTimer*350;
+                    inline.style='width:'+widthgo+'px';
+                 curtime(name2)
+                 duratime(name3)
+                 }
+            }
+        }
+        //音乐声音控制
+        function MusicLine(){
+            var volum=audio.volume;//当前音乐声音 volum/1
+            var widthgo=volum*100;
+            volumeline.style='width:'+widthgo+'px';
+            // console.log(volumeline.style.width)
+        }
+        MusicLine()
+        //进度条点击
+        document.getElementById('VolumeLine').addEventListener('click',function(event){
+            volumeline.style='width:'+event.offsetX+'px';
+            audio.volume=event.offsetX/100;
+        })
+        document.getElementById('inLine').addEventListener('click',function(event){
+           inline.style='width:'+event.offsetX+'px';
+           var duringTimer=audio.duration
+           audio.currentTime=event.offsetX/350*duringTimer;
+           curtime(name2)
+           duratime(name3)
+        })
+       //时间执行
+         var timer=()=>{setInterval(function(){
+               curtime(name2)
+               duratime(name3)
+               nextMusic()
+               gogogo()
+           },1000)} 
+     function gogogo(){
+         var currentTimer=audio.currentTime;//当前时间
+         var duringTimer=audio.duration;//总时间
+         var widthgo=currentTimer/duringTimer*350;
+         inline.style='width:'+widthgo+'px';
+     }
+           //总时间
+          function duratime(txt){
+           var duraTime=audio.duration;//总时长
+           var DuraTimeMin=parseInt(duraTime/60);//分钟
+           var DuraTimeSec=parseInt(duraTime%60); //秒
+          
+           if(DuraTimeMin<10){
+               if(DuraTimeSec<10){
+                  txt.innerHTML="0"+DuraTimeMin+":"+"0"+DuraTimeSec
+               }
+               else if(DuraTimeSec>10){
+                  txt.innerHTML="0"+DuraTimeMin+":"+DuraTimeSec
+               }
+               else{
+                  if(DuraTimeSec<10){
+                  txt.innerHTML=DuraTimeMin+":0"+DuraTimeSec
+               }else if(DuraTimeSec>10){
+                  txt.innerHTML=+DuraTimeMin+DuraTimeSec
+               }
+               }
+           }
+          }         //当前时间
+          function curtime(txt){
+              if(audio.currentTime<10){//当前秒小于10
+                      txt.innerHTML="0:0"+Math.floor(audio.currentTime);
+                  }else if(audio.currentTime>9 &&audio.currentTime<60)
+                   {
+                       txt.innerHTML="0:"+Math.floor(audio.currentTime);
+                   }
+              else if(audio.currentTime>60){
+                      var minet=parseInt(audio.currentTime/60);//分
+                      var sec=audio.currentTime-minet*60;//秒
+                      if(sec<10){
+                              txt.innerHTML="0"+minet+":"+"0"+parseInt(sec);
+                          }
+                      else{
+                              txt.innerHTML="0"+minet+":"+parseInt(sec);
+                          }
+                  }
+          }
+        changeMu.addEventListener('click',function(){
+            if(changeMuNum==0){
+                document.getElementById('changeMu').src='../img/music/mute.png'
+                audio.volume=0;
+                changeMuNum=1;
+                volumeline.style.width=''
+            }else{
+                document.getElementById('changeMu').src='../img/music/playing.png'
+                audio.volume=1;
+                changeMuNum=0;
+                MusicLine()
+            }
+        })
+        var stopjpg=()=>{
+            document.getElementById('playMusic').src='../img/music/play.png';
+            // clear(timer)
+           
+        }
+        var playjpg=()=>{
+            document.getElementById('playMusic').src='../img/music/pause.png';
+            MusicLine()
+        // setInterval(function(){
+        //     curtime(name2);
+        // },1000)
+           
+        }
+        var goright=()=>{
+            if(songSelect.value<list.length-1)
+            { 
+                songSelect.value++
+                }
+            else{
+                songSelect.value=0
+                }
+            stopjpg()
+            num=0;
+           
+            alll()
+            change(songSelect.value)
+        }
+        var goleft=()=>{
+            if(songSelect.value>0){
+               songSelect.value--
+            }else{
+                songSelect.value=21
+            }
+            stopjpg()
+            num=0;
+            alll()
+             change(songSelect.value)
+        }
+        var clear=()=>{
+            for(var i=0;i<imgs.length;i++){
+                imgs[i].className='imgs'
+            }
+        } 
+        var change=function(valuein){
+            clear();
+            clearList();
+                num=0;
+                option();
+            for(var i=0;i<imgs.length;i++){
+                imgs[i].index=i; 
+            }
+            for(var i=0;i<options.length;i++){
+                options[i].index=i;
+            }
+            document.getElementById('namel').innerHTML=options[valuein].innerHTML;
+            map=list[valuein]
+            srcnew=`../img/music/${map}.mp3`;
+            audio.src=srcnew;
+            imgs[valuein].classList.add('activeimg');
+            items[valuein].className="item activeli"
+            playmusic()
+            gogogo();
+        }
+        songSelect.onchange=function Change(){
+            for(var i=0;i<imgs.length;i++){
+                imgs[i].index=i;
+            } 
+               clear()
+                num=0;
+                option();
+                change(this.value)    
+        }
+        //判断
+        var option=()=>{
+            if(num==0){
+                stopjpg()
+            }else{
+                playjpg();
+            }
+        }
+        var playmusic=()=>{
+            audio.play();
+            playjpg()
+            num=1;
+            timer()
+            MusicLine()
+           
+           
+        }
+       var stopmusic=()=>{
+           audio.pause();
+           stopjpg();
+           num=0;
+          
+           clearInterval(timer);
+       }
+       playMusic.addEventListener('click',function(){
+           if(num==0){
+            playmusic()
+           }else if(num==1){
+            stopmusic();
+           }
+       })
+    
+
+    </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+  *{margin: 0;padding: 0;}
+  ul,li{list-style: none;}
+  .wrap{
+        width: 708px;
+        height: 400px;
+        position: relative;
+        margin: 200px auto;}
+  .wrap .list{
+      width: 708px;
+      height: 400px;
+      position: relative;}
+ .item{ 
+        width: 100%;
+        height: 100%;
+        position: absolute; 
+        color: white;
+        opacity: 0;
+        box-shadow: -20px 30px 30px black;
+        transition: all 2s;}
+
+  .wrap .list .item:nth-child(1){
+      background: url("../img/001.jpg") no-repeat center;
+      background-size: 100% 100%;
+      background-attachment:fixed;
+  }
+  .wrap .list .item:nth-child(2){
+    background: url("../img/002.jpg") no-repeat center;
+      background-size: 100% 100%;
+      background-attachment:fixed;
+  }
+  .wrap .list .item:nth-child(3){
+    background: url("../img/003.jpg") no-repeat center;
+      background-size: 100% 100%;
+      background-attachment:fixed;
+  }
+  .wrap .list .item:nth-child(4){
+    background: url("../img/004.jpg") no-repeat center;
+      background-size: 100% 100%;
+      background-attachment:fixed;
+  }
+  .wrap .list .item:nth-child(5){
+    background: url("../img/005.jpg") no-repeat center;
+      background-size: 100% 100%;
+      background-attachment:fixed;
+  }
+  .wrap .list .item:nth-child(6){
+    background: url("../img/006.jpg") no-repeat center;
+      background-size: 100% 100%;
+      background-attachment:fixed;
+  }
+  .btn{
+      position: absolute;
+      text-align: center;
+      line-height: 90px;
+      font-size: 30px;top: 50%;
+      transform:translateY(-50%);
+      z-index: 101;
+      width: 30px;
+      height: 90px;
+      background-color: #cccccc;
+      opacity: 0.5;
+      transition: opacity 1s;}
+  .btn:hover{
+      opacity: 0.9;
+      cursor: pointer;
+  }
+  #left{left: 0;}
+  #right{right: 0;}
+  .item.active{
+        opacity: 1;
+        z-index: 100;
+    }
+.pointList{
+    list-style: none;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom:10px;
+    z-index: 2000;
+    display: flex;
+}
+.point{
+    margin: 6px;
+    opacity: 0.5;
+    float: left;
+   background: white;
+   border-radius: 10%; 
+    margin-left: 10px;
+    width: 50px;
+    height: 10px;
+    transition: all 2s;
+    
+}
+.point:hover{
+    opacity: 1;
+    background: white;
+    cursor: pointer;
+    
+}
+.point.active{
+    opacity: 1;
+    background: white;
+}
+</style>
+<style>
+
+</style>
+<body>
+    <div class="wrap" >
+        <ul class="list">
+            <li class="item active"></li>
+            <li class="item "></li>
+            <li class="item"></li>
+            <li class="item"></li>
+            <li class="item"></li>
+            <li class="item"></li>
+        </ul>
+        <ul class="pointList" >
+            <li class="point active"></li>
+            <li class="point"></li>
+            <li class="point"></li>
+            <li class="point"></li>
+            <li class="point"></li>
+            <li class="point"></li>
+        </ul>
+        <div type="button" class="btn" id="left">&lt;</div>
+        <div type="button" class="btn" id="right">&gt;</div>
+    </div>
+    <script>
+        var wrap=document.getElementsByClassName('wrap')
+           var items=document.getElementsByClassName('item')
+           var points=document.getElementsByClassName('point')
+           var goright=document.getElementById('right')
+           var goleft=document.getElementById('left')
+           var index=0;
+           var timer=0;
+           var indexPoint=0;
+           var autoIndex=0;
+          
+           var clear=function(){
+            for(var i=0;i<items.length;i++){
+                items[i].className='item'
+            }
+            for(var i=0;i<points.length;i++){
+                    points[i].className='point'
+                }
+            }
+           var goIndex=function(){
+               clear();
+               points[index].classList.add('active');
+               items[index].classList.add('active');
+           }
+           var goRight=function(){
+            //    clearInterval(timer)
+               if(index<5){
+                   index++;
+               }else{index=0}
+               goIndex(index)
+               autoIndex=index
+              
+           }
+           var goLeft=function(){
+               if(index>0){
+                   index--;
+               }else{index=5}
+               goIndex(index);
+               autoIndex=index
+               
+           }
+           goright.addEventListener('click',function(){
+            clearInterval(timer) 
+              goRight(index);
+              console.log(index)
+           })
+           goleft.addEventListener('click',function(){
+            clearInterval(timer) 
+              goLeft(index);
+           })
+           for(var i=0;i<points.length;i++){
+               points[i].indexPoint=i;
+               points[i].onclick=function(){
+                  clear()
+                 
+                   clearInterval(timer)   
+                  this.classList.className='point active'
+                  index = this.indexPoint
+                  goIndex();
+                 
+                 move()
+                  
+               }
+           }
+       
+         function move(){
+             timer=setInterval(function(){
+                goRight()
+          
+             },2000)
+         }
+         move();
+         
+            </script>
+</body>
+</html>

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        margin:0;
+        padding: 0;
+        height: 100vh;
+        background-image: linear-gradient(#3498db,#e74c3c);
+    }
+    .cube{
+        height: 300px;width: 300px;margin:100px auto 0;
+        position: relative;transform-style: preserve-3d;
+        animation: roll 10s linear infinite;
+         
+    }
+        @keyframes roll{
+         0%{transform: rotateX(0) rotateY(0);}
+         100%{transform: rotateX(360deg) rotateY(360deg);}
+    }   
+     .cube .small{
+        transition:  0.6s linear;
+        perspective: 1000px;
+        width: 300px;height: 300px;position: absolute;text-align: center;line-height: 300px;font-size: 50px;
+    }
+    .cube .small:nth-child(1){
+        transform: rotateX(90deg) translateZ(250px) scale(0) ;
+        background: url('../img/001.jpg') no-repeat center ;
+        opacity: 0.4;
+    }
+    .cube .small:nth-child(2){
+        transform: rotateX(-90deg) translateZ(250px) scale(0);
+        background: url('../img/002.jpg') no-repeat center ;
+        opacity: 0.4;
+    }
+    .cube .small:nth-child(3){
+        transform: rotateY(-90deg) translateZ(250px) scale(0);
+        background: url('../img/003.jpg') no-repeat center ;
+        opacity: 0.4;
+    }
+    .cube .small:nth-child(4){
+        transform:  rotateY(90deg) translateZ(250px) scale(0);
+        opacity: 0.4;
+        background: url('../img/004.jpg') no-repeat center ;
+    }
+    .cube .small:nth-child(5){
+        transform: translateZ(250px) scale(0);
+        background: url('../img/005.jpg') no-repeat center ;
+        opacity: 0.4;
+    }
+    .cube .small:nth-child(6){
+        background: url('../img/006.jpg') no-repeat center ;
+        opacity: 0.4;
+        transform: rotateY(180deg) translateZ(250px) scale(0);
+    }
+
+
+     .cube:hover .small:nth-child(1){
+        transform: rotateX(90deg) translateZ(250px) scale(1);
+    }
+    .cube:hover .small:nth-child(2){
+        transform: rotateX(-90deg) translateZ(250px) scale(1);
+    }
+    .cube:hover .small:nth-child(3){
+        transform: rotateY(-90deg) translateZ(250px) scale(1);
+    }
+    .cube:hover .small:nth-child(4){
+        transform:  rotateY(90deg) translateZ(250px) scale(1);
+    }
+    .cube:hover .small:nth-child(5){
+        transform: translateZ(250px) scale(1)
+    }
+    .cube:hover .small:nth-child(6){
+        transform: rotateY(180deg) translateZ(250px) scale(1);
+    }    
+
+     /* .small-in{
+        position: absolute;
+    }  */
+   
+    .cube .smaller{
+        transform: translateZ(-100px) translateX(100px) translateY(100px) scale(2);
+        left: 0;top: 0;right: 0;bottom: 0;margin: auto;
+        transition:  0.6s linear;
+        perspective: 500px;
+        transition: .6s;
+        width: 150px;height: 150px;position: absolute;text-align: center;line-height: 150px;font-size: 50px;
+    }
+     .smaller:nth-child(1){
+        background: url('../img/001.jpg') no-repeat center ;
+        animation: oneRun 2s linear;
+        animation-fill-mode: forwards;
+    }
+    @keyframes oneRun{
+        0%{}
+        100%{ transform: rotateX(90deg) translateZ(80px) scale(1) ;}
+    }
+     .smaller:nth-child(2){
+        background: url('../img/002.jpg') no-repeat center;
+        animation: twoRun 2s linear;
+        animation-fill-mode: forwards; 
+    }
+    @keyframes twoRun{
+        0%{}
+        100%{ transform: rotateX(-90deg) translateZ(80px) scale(1);}
+    }
+     .smaller:nth-child(3){
+        animation: threeRun 2s linear;
+        animation-fill-mode: forwards; 
+        background: url('../img/003.jpg') no-repeat center ;
+    }
+    @keyframes threeRun{
+        0%{}
+        100%{ transform: rotateY(-90deg) translateZ(80px) scale(1);}
+    }
+     .smaller:nth-child(4){
+        animation: fourRun 2s linear;
+        animation-fill-mode: forwards; 
+        background: url('../img/004.jpg') no-repeat center ;
+    }
+    @keyframes fourRun{
+        0%{}
+        100%{ transform:  rotateY(90deg) translateZ(80px) scale(1);}
+    }
+      .smaller:nth-child(5){
+        animation: fiveRun 2s linear;
+        animation-fill-mode: forwards; 
+        background: url('../img/005.jpg') no-repeat center ;
+    }
+    @keyframes fiveRun{
+        0%{}
+        100%{  transform: translateZ(80px) scale(1);}
+    }
+     .smaller:nth-child(6){
+        background: url('../img/006.jpg') no-repeat center ;
+        animation: sixRun 2s linear;
+        animation-fill-mode: forwards; 
+    } 
+    @keyframes sixRun{
+        0%{}
+        100%{  transform: rotateY(180deg) translateZ(80px) scale(1);}
+    }
+</style>
+<body>
+    <div class="cube">
+        <div class="small"></div>
+        <div class="small"></div>
+        <div class="small"></div>
+        <div class="small"></div>
+        <div class="small"></div>
+        <div class="small"></div>
+
+      <div class="small-in">
+        <div class="smaller"></div>
+        <div class="smaller"></div>
+        <div class="smaller"></div>
+        <div class="smaller"></div>
+        <div class="smaller"></div>
+        <div class="smaller"></div>
+    </div>
+    </div>
+    
+</body>
+</html>
